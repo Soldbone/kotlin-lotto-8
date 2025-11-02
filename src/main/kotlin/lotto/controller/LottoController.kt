@@ -67,4 +67,30 @@ class LottoController {
         return lottoList.toList()
     }
 
+    fun generateWinningList(winningNumbers: List<Int>, bonusNumber: Int): List<Int> {
+        val winningList = mutableListOf<Int>()
+        winningList.addAll(winningNumbers)
+        winningList.add(bonusNumber)
+        return winningList.toList()
+    }
+
+    fun getPrizeTier(
+        winningNumbers: List<Int>,
+        bonusNumber: Int,
+        lotto: Lotto,
+    ): WinningRule {
+        val matchCount = lotto.countWinningNumbers(winningNumbers)
+        val hasBonus = lotto.hasBonusNumber(bonusNumber)
+        return when (matchCount) {
+            6 -> WinningRule.FIRST
+            5 -> {
+                if (hasBonus) WinningRule.SECOND else WinningRule.THIRD
+            }
+
+            4 -> WinningRule.FOURTH
+            3 -> WinningRule.FIFTH
+            else -> WinningRule.NONE
+        }
+    }
+
 }

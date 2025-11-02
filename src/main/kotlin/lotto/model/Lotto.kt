@@ -6,4 +6,11 @@ class Lotto(private val numbers: List<Int>) {
     }
 
     // TODO: 추가 기능 구현
+    fun countWinningNumbers(winningNumbers: List<Int>): Int {
+        return numbers.count { it in winningNumbers }
+    }
+
+    fun hasBonusNumber(bonus: Int): Boolean {
+        return numbers.contains(bonus)
+    }
 }
