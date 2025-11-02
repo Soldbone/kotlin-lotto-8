@@ -1,5 +1,9 @@
 package lotto.controller
 
+import camp.nextstep.edu.missionutils.Randoms
+import lotto.constants.Constants
+import lotto.constants.WinningRule
+import lotto.model.Lotto
 import lotto.validator.Validator
 import lotto.view.InputView
 
@@ -20,12 +24,10 @@ class LottoController {
     fun getWinningNumbers(): List<Int>? {
         val winningNumbersInput = InputView.readWinningNumbers()
         val splitWinningNumbersInput = winningNumbersInput.split(',')
-
         try {
             Validator.validateWinningNumbers(splitWinningNumbersInput)
             val winningNumbers = splitWinningNumbersInput.map { numbersInput ->
                 val winningNumber = numbersInput.toInt()
-
                 winningNumber
             }
             return winningNumbers
@@ -47,4 +49,22 @@ class LottoController {
         }
         return null
     }
+
+    fun getLottoAmount(price: Int): Int {
+        return price / Constants.UNIT_PRICE
+    }
+
+    fun generateLotto(price: Int): List<Lotto> {
+        val amount = getLottoAmount(Constants.UNIT_PRICE)
+        val lottoList = mutableListOf<Lotto>()
+        repeat(amount) {
+            val nums = Randoms.pickUniqueNumbersInRange(
+                Constants.MIN_LOTTO_NUM, Constants.MAX_LOTTO_NUM, Constants.NUM_OF_CHOICES
+            )
+            val sortedNums = nums.sorted()
+            lottoList.add(Lotto(sortedNums))
+        }
+        return lottoList.toList()
+    }
+
 }
