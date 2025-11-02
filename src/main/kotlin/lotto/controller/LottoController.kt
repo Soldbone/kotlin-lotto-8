@@ -93,4 +93,24 @@ class LottoController {
         }
     }
 
+    fun generateResult(
+        lottos: List<Lotto>,
+        winningNumbers: List<Int>,
+        bonusNumber: Int,
+    ): Map<WinningRule, Int> {
+        val statistics = WinningRule.entries.associateWith { 0 }.toMutableMap()
+        lottos.forEach { lotto ->
+            val rule = getPrizeTier(winningNumbers, bonusNumber, lotto)
+            statistics[rule] = statistics.getOrDefault(rule, 0) + 1
+        }
+        return statistics
+    }
+
+    fun calculateRateOfReturn(statistics: Map<WinningRule, Int>, price: Int): Double {
+        var totalPrize = 0L
+        statistics.forEach { (rule, count) ->
+            if (rule != WinningRule.NONE) totalPrize += rule.prize.toLong()
+        }
+        return (totalPrize.toDouble() / price.toDouble()) * 100 // 반올림은 출력 시 포매팅 활용
+    }
 }
