@@ -11,7 +11,7 @@ object InputView {
 
     fun readPrice(): String = prompt(InputMessage.PRICE)
 
-    fun readWinningNumber(): String = prompt(InputMessage.WINNING_NUMBER)
+    fun readWinningNumbers(): String = prompt(InputMessage.WINNING_NUMBER)
 
     fun readBonusNumber(): String = prompt(InputMessage.BONUS_NUMBER)
 }
