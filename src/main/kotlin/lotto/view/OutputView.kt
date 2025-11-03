@@ -3,7 +3,7 @@ package lotto.view
 import lotto.constants.OutputMessage
 import lotto.constants.WinningRule
 
-object OuputView {
+object OutputView {
     fun printLottoAmount(amount: Int) {
         val amountPhrase = amount.toString()
         println()
