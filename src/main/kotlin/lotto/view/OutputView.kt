@@ -12,7 +12,7 @@ object OutputView {
     }
 
     // Lotto를 직접 사용하지 않기 위해 List로 포장
-    fun printLottoNumbers(lottoNumbers: List<List<Int>>) {
+    fun printLottoNumbers(lottoNumbers: List<String>) {
         lottoNumbers.forEach { lottoNumber ->
             println(lottoNumber)
         }

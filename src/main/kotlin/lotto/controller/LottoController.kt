@@ -56,7 +56,7 @@ class LottoController {
     }
 
     fun generateLotto(price: Int): List<Lotto> {
-        val amount = getLottoAmount(Constants.UNIT_PRICE)
+        val amount = getLottoAmount(price)
         val lottoList = mutableListOf<Lotto>()
         repeat(amount) {
             val nums = Randoms.pickUniqueNumbersInRange(
@@ -66,6 +66,13 @@ class LottoController {
             lottoList.add(Lotto(sortedNums))
         }
         return lottoList.toList()
+    }
+
+    fun getLottoNumbers(lottos: List<Lotto>): List<String> {
+        val lottoNumbers = lottos.map { lotto ->
+            lotto.toString()
+        }
+        return lottoNumbers
     }
 
     fun generateWinningList(winningNumbers: List<Int>, bonusNumber: Int): List<Int> {

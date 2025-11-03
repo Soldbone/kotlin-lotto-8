@@ -10,6 +10,6 @@ enum class OutputMessage(val msg: String) {
     ERROR_PREFIX("[ERROR] %s");
 
     fun format(vararg args: Any): String {
-        return msg.format(args)
+        return msg.format(*args)
     }
 }
