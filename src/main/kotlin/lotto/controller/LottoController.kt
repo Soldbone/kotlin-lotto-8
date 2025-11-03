@@ -6,6 +6,7 @@ import lotto.constants.WinningRule
 import lotto.model.Lotto
 import lotto.validator.Validator
 import lotto.view.InputView
+import lotto.view.OutputView
 
 class LottoController {
     fun getPrice(): Int? {
@@ -16,7 +17,7 @@ class LottoController {
             return priceInput.toInt()
         } catch (e: IllegalArgumentException) {
             // TODO: 출력 기능 구현 후 대체 필요
-            println(e.message)
+            OutputView.printErrorMessage(e.message)
         }
         return null
     }
@@ -33,7 +34,7 @@ class LottoController {
             return winningNumbers
         } catch (e: IllegalArgumentException) {
             // TODO: 출력 기능 구현 후 대체 필요
-            println(e.message)
+            OutputView.printErrorMessage(e.message)
         }
         return null
     }
@@ -45,7 +46,7 @@ class LottoController {
             return bonusNumberInput.toInt()
         } catch (e: IllegalArgumentException) {
             // TODO: 출력 기능 구현 후 대체 필요
-            println(e.message)
+            OutputView.printErrorMessage(e.message)
         }
         return null
     }
