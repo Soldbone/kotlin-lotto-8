@@ -36,7 +36,7 @@ object OutputView {
         println(OutputMessage.RATE_OF_RETURN.format(rateOfReturn))
     }
 
-    fun printErrorMessage(message: ErrorMessage) {
-        println(message.errMsg.format(OutputMessage.PRE_STATISTICS, message))
+    fun printErrorMessage(message: String?) {
+        println(message?.format(OutputMessage.PRE_STATISTICS, message))
     }
 }
