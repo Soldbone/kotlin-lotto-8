@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.constants.ErrorMessage
 import lotto.constants.OutputMessage
 import lotto.constants.WinningRule
 
@@ -33,5 +34,9 @@ object OutputView {
 
     fun printRateOfReturn(rateOfReturn: Double) {
         println(OutputMessage.RATE_OF_RETURN.format(rateOfReturn))
+    }
+
+    fun printErrorMessage(message: ErrorMessage) {
+        println(message.errMsg.format(OutputMessage.PRE_STATISTICS, message))
     }
 }
