@@ -35,5 +35,5 @@ object OutputView {
     // TODO: 구현 필
     fun displayTotalReturn() {}
 
-    fun displayError(errorMessage: String) = println(OutputMessage.ERROR.format(errorMessage))
+    fun displayError(errorMessage: String): String = OutputMessage.ERROR.format(errorMessage)
 }
