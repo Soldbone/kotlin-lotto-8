@@ -1,7 +1,7 @@
 package lotto.view
 
 import lotto.constant.WinningCriteria
-import lotto.constant.prompt.OutputMessage
+import lotto.constant.message.OutputMessage
 import lotto.model.Lotto
 import lotto.model.LottoResult
 
@@ -29,7 +29,7 @@ object OutputView {
 
         val winningResult = lottoResult.produce()
         displayWinningResult(winningResult)
-        displayTotalReturn()
+        displayRateOfReturn()
     }
 
     // TODO: 구현 필
@@ -48,7 +48,7 @@ object OutputView {
     }
 
     // TODO: 구현 필
-    fun displayTotalReturn() {}
+    fun displayRateOfReturn() {}
 
     fun displayError(errorMessage: String): String = OutputMessage.ERROR.format(errorMessage)
 }

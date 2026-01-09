@@ -1,4 +1,4 @@
-package lotto.constant.prompt
+package lotto.constant.message
 
 enum class OutputMessage(val text: String) {
     // 입력 프롬프트
