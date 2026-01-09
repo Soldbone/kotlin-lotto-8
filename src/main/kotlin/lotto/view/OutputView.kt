@@ -28,12 +28,12 @@ object OutputView {
         prompt(OutputMessage.WINNING_STATISTICS)
 
         val winningResult = lottoResult.produce()
+        val rateOfReturn = lottoResult.getRateOfReturn(winningResult)
         displayWinningResult(winningResult)
-        displayRateOfReturn()
+        displayRateOfReturn(rateOfReturn)
     }
 
-    // TODO: 구현 필
-    fun displayWinningResult(winningResult: Map<WinningCriteria, Int>) {
+    private fun displayWinningResult(winningResult: Map<WinningCriteria, Int>) {
         val sortedWinningResult = winningResult.toSortedMap(compareByDescending { it })
 
         sortedWinningResult.forEach { (rank, count) ->
@@ -47,8 +47,9 @@ object OutputView {
         }
     }
 
-    // TODO: 구현 필
-    fun displayRateOfReturn() {}
+    private fun displayRateOfReturn(rateOfReturn: Double) {
+        println(OutputMessage.RATE_OF_RETURN.format(rateOfReturn))
+    }
 
     fun displayError(errorMessage: String): String = OutputMessage.ERROR.format(errorMessage)
 }

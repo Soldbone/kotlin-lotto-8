@@ -12,7 +12,7 @@ enum class OutputMessage(val text: String) {
     WINNING_STATISTICS("당첨 통계\n---"),
     WINNING_NORMAL("%d개 일치 (%,d원) - %d개"),
     WINNING_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    TOTAL_RETURN("총 수익률은 %.1f%%입니다."),
+    RATE_OF_RETURN("총 수익률은 %.1f%%입니다."),
     ERROR("[ERROR] %s");
 
     fun format(vararg args: Any): String = text.format(*args)
