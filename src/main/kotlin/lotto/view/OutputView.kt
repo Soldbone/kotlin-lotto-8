@@ -1,7 +1,9 @@
 package lotto.view
 
+import lotto.constant.WinningCriteria
 import lotto.constant.prompt.OutputMessage
 import lotto.model.Lotto
+import lotto.model.LottoResult
 
 object OutputView {
     fun prompt(outputMessage: OutputMessage) {
@@ -21,16 +23,29 @@ object OutputView {
         lottos.forEach { lotto -> println(lotto) }
     }
 
-    fun displayWinningStatistics() {
+    fun displayWinningStatistics(lottoResult: LottoResult) {
         println()
         prompt(OutputMessage.WINNING_STATISTICS)
 
-        displayWinningResult()
+        val winningResult = lottoResult.produce()
+        displayWinningResult(winningResult)
         displayTotalReturn()
     }
 
     // TODO: 구현 필
-    fun displayWinningResult() {}
+    fun displayWinningResult(winningResult: Map<WinningCriteria, Int>) {
+        val sortedWinningResult = winningResult.toSortedMap(compareByDescending { it })
+
+        sortedWinningResult.forEach { (rank, count) ->
+            val message =
+                if (rank.hasBonus) OutputMessage.WINNING_BONUS else OutputMessage.WINNING_NORMAL
+
+            if (rank != WinningCriteria.NONE) {
+                println(message.format(rank.matchCount, rank.prize, count))
+            }
+
+        }
+    }
 
     // TODO: 구현 필
     fun displayTotalReturn() {}

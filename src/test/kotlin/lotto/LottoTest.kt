@@ -1,9 +1,14 @@
 package lotto
 
+import lotto.constant.WinningCriteria
 import lotto.model.Lotto
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class LottoTest {
     @Test
@@ -26,6 +31,61 @@ class LottoTest {
     fun `Lotto의 toString은 Lotto의 numbers 인스턴스 변수의 toString()과 같다`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val numbers = listOf(1, 2, 3, 4, 5, 6)
-        assertEquals(lotto.toString(), numbers.toString())
+        assertEquals(numbers.toString(), lotto.toString())
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    fun `현재 Lotto의 등수를 당첨 기준에 따라 반환한다`(
+        lotto: Lotto,
+        bonusNumber: Int,
+        winningLotto: Lotto,
+        winning: WinningCriteria,
+    ) {
+        assertEquals(lotto.checkWinning(winningLotto, bonusNumber), winning)
+    }
+
+    companion object {
+        @JvmStatic
+        fun `현재 Lotto의 등수를 당첨 기준에 따라 반환한다`(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.FIRST
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.SECOND
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 5, 8)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.THIRD
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 4, 7, 9)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.FOURTH
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.FIFTH
+                ),
+                Arguments.of(
+                    Lotto(listOf(1, 2, 7, 8, 9, 45)),
+                    7,
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    WinningCriteria.NONE
+                ),
+            )
+        }
     }
 }

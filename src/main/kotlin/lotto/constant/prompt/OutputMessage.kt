@@ -10,8 +10,8 @@ enum class OutputMessage(val text: String) {
     NUMBER_OF_PURCHASES("%d개를 구매했습니다."),
 
     WINNING_STATISTICS("당첨 통계\n---"),
-    WINNING_NORMAL("%d개 일치 (%s원) - %d개"),
-    WINNING_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
+    WINNING_NORMAL("%d개 일치 (%,d원) - %d개"),
+    WINNING_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     TOTAL_RETURN("총 수익률은 %.1f%%입니다."),
     ERROR("[ERROR] %s");
 
