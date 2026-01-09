@@ -25,4 +25,23 @@ class LottoResultTest {
         )
         assertEquals(expected, lottoResult)
     }
+
+    @Test
+    fun `getRateOfReturn()은 수익률을 반환한다`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = 7
+        val lottos = listOf(
+            Lotto(listOf(1, 2, 3, 4, 7, 8)),
+            Lotto(listOf(7, 8, 9, 10, 11, 12)),
+            Lotto(listOf(1, 2, 7, 23, 35, 45)),
+            Lotto(listOf(1, 2, 7, 27, 39, 41)),
+            Lotto(listOf(1, 2, 7, 19, 40, 42)),
+        )
+        val winningInfo = winningLotto to bonusNumber
+        val lottoResult = LottoResult(lottos, winningInfo)
+        val winningResult = lottoResult.produce()
+        val rateOfReturn = lottoResult.getRateOfReturn(winningResult)
+        val expected = 1000.0
+        assertEquals(expected, rateOfReturn)
+    }
 }
