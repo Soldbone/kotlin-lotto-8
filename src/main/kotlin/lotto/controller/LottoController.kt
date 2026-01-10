@@ -9,10 +9,10 @@ import lotto.view.OutputView
 
 class LottoController {
     fun getPurchaseAmount(): Int {
-        OutputView.displayPurchaseAmountPrompt()
-
         while (true) {
             try {
+                OutputView.displayPurchaseAmountPrompt()
+                // TODO: 검증 로직을 별도 기능을 별도 메서드로 분리 -> 단위 테스트 작성
                 val purchaseAmount =
                     InputView.read().toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.text)
                 require(purchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }

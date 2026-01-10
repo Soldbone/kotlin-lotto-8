@@ -58,5 +58,8 @@ object OutputView {
         println(OutputMessage.RATE_OF_RETURN.format(rateOfReturn))
     }
 
-    fun displayError(errorMessage: String): String = OutputMessage.ERROR.format(errorMessage)
+    fun displayError(errorMessage: String) {
+        println(OutputMessage.ERROR.format(errorMessage))
+        println()
+    }
 }
