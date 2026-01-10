@@ -16,11 +16,18 @@ object OutputView {
 
     fun displayBonusNumberPrompt() = prompt(OutputMessage.BONUS_NUMBER_PROMPT)
 
-    fun displayNumberOfPurchases(lottos: List<Lotto>) {
-        println()
-        println(OutputMessage.NUMBER_OF_PURCHASES.format(lottos.size))
+    fun displayNumberOfPurchases(amount: Int) {
+        println(OutputMessage.NUMBER_OF_PURCHASES.format(amount))
+    }
 
+    fun displayLottos(lottos: List<Lotto>) {
         lottos.forEach { lotto -> println(lotto) }
+    }
+
+    fun displayPurchasedLottos(lottos: List<Lotto>) {
+        println()
+        displayNumberOfPurchases(lottos.size)
+        displayLottos(lottos)
     }
 
     fun displayWinningStatistics(lottoResult: LottoResult) {

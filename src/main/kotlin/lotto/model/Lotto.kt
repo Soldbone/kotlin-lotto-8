@@ -1,6 +1,8 @@
 package lotto.model
 
+import lotto.constant.LottoConstant
 import lotto.constant.WinningCriteria
+import lotto.constant.error.ErrorMessage
 
 class Lotto(private val numbers: List<Int>) {
     init {
@@ -19,5 +21,12 @@ class Lotto(private val numbers: List<Int>) {
         val hasBonusNumber = numbers.contains(bonusNumber)
         val result = WinningCriteria.of(matchCount, hasBonusNumber)
         return result
+    }
+
+    companion object {
+        fun getNumberOfPurchases(purchaseAmount: Int): Int {
+            require(purchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }
+            return purchaseAmount / LottoConstant.PRICE
+        }
     }
 }

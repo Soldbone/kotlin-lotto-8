@@ -17,7 +17,8 @@ class LottoMachine {
             LottoConstant.END_NUMBER,
             LottoConstant.NUMBER_OF_CHOICES
         )
-        val lotto = Lotto(numbers)
+        val sortedNumbers = numbers.sorted()
+        val lotto = Lotto(sortedNumbers)
         return lotto
     }
 }
