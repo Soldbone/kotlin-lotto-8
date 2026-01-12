@@ -17,7 +17,7 @@ class LottoMachineTest {
     @Test
     fun `drawLotto()로 생성한 로또 출력의 콤마 개수는 선택 가능한 숫자 개수보다 1개 적다`() {
         val lotto = lottoMachine.drawLotto()
-        assertEquals(lotto.toString().count { it == ',' }, LottoConstant.NUMBER_OF_CHOICES - 1)
+        assertEquals(lotto.toString().count { it == ',' }, LottoConstant.SIZE - 1)
     }
 
     @Test

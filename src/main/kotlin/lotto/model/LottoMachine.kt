@@ -15,7 +15,7 @@ class LottoMachine {
         val numbers = Randoms.pickUniqueNumbersInRange(
             LottoConstant.START_NUMBER,
             LottoConstant.END_NUMBER,
-            LottoConstant.NUMBER_OF_CHOICES
+            LottoConstant.SIZE
         )
         val sortedNumbers = numbers.sorted()
         val lotto = Lotto(sortedNumbers)

@@ -1,8 +1,7 @@
-package lotto
+package lotto.model
 
 import lotto.constant.WinningCriteria
-import lotto.model.Lotto
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +30,7 @@ class LottoTest {
     fun `Lotto의 toString은 Lotto의 numbers 인스턴스 변수의 toString()과 같다`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val numbers = listOf(1, 2, 3, 4, 5, 6)
-        assertEquals(numbers.toString(), lotto.toString())
+        Assertions.assertEquals(numbers.toString(), lotto.toString())
     }
 
     @ParameterizedTest
@@ -42,7 +41,7 @@ class LottoTest {
         winningLotto: Lotto,
         winning: WinningCriteria,
     ) {
-        assertEquals(lotto.checkWinning(winningLotto, bonusNumber), winning)
+        Assertions.assertEquals(lotto.checkWinning(winningLotto, bonusNumber), winning)
     }
 
     companion object {

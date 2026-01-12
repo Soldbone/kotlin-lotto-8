@@ -6,7 +6,8 @@ import lotto.constant.error.ErrorMessage
 
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) { "[ERROR] 로또 번호는 6개여야 합니다." }
+        require(numbers.size == LottoConstant.SIZE) { ErrorMessage.INVALID_LOTTO_SIZE }
+        require(numbers.toSet().size == LottoConstant.SIZE) { ErrorMessage.DUPLICATE_NUMBERS }
     }
 
     // TODO: 추가 기능 구현
