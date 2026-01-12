@@ -9,17 +9,25 @@ import lotto.view.OutputView
 
 class LottoController {
     fun getPurchaseAmount(): Int {
-        while (true) {
-            try {
-                OutputView.displayPurchaseAmountPrompt()
-                // TODO: 검증 로직을 별도 기능을 별도 메서드로 분리 -> 단위 테스트 작성
-                val purchaseAmount =
-                    InputView.read().toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.text)
-                require(purchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }
-                return purchaseAmount
-            } catch (e: IllegalArgumentException) {
-                OutputView.displayError(e.message ?: ErrorMessage.UNEXPECTED_ERROR.text)
-            }
+        var validatedPurchaseAmount: Int?
+        do {
+            OutputView.displayPurchaseAmountPrompt()
+            val purchaseAmount = InputView.read()
+            validatedPurchaseAmount = validatePurchaseAmount(purchaseAmount)
+        } while (validatedPurchaseAmount == null)
+        return validatedPurchaseAmount
+    }
+
+    // 검증
+    fun validatePurchaseAmount(purchaseAmount: String): Int? {
+        try {
+            val validatedPurchaseAmount =
+                purchaseAmount.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.text)
+            require(validatedPurchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }
+            return validatedPurchaseAmount
+        } catch (e: IllegalArgumentException) {
+            OutputView.displayError(e.message ?: ErrorMessage.UNEXPECTED_ERROR.text)
+            return null
         }
     }
 
