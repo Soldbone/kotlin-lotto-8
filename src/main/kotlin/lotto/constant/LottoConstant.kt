@@ -5,4 +5,5 @@ object LottoConstant {
     const val END_NUMBER = 45
     const val SIZE = 6
     const val PRICE = 1000
+    const val MIN_AMOUNT = 1
 }

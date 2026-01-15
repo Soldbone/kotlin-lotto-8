@@ -26,7 +26,7 @@ class Lotto(private val numbers: List<Int>) {
 
     companion object {
         fun getNumberOfPurchases(purchaseAmount: Int): Int {
-            require(purchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }
+            require(purchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INSUFFICIENT_MINIMUM_AMOUNT }
             return purchaseAmount / LottoConstant.PRICE
         }
     }

@@ -18,12 +18,13 @@ class LottoController {
         return validatedPurchaseAmount
     }
 
-    // 검증
+    // 구입 금액 검증
     fun validatePurchaseAmount(purchaseAmount: String): Int? {
         try {
             val validatedPurchaseAmount =
                 purchaseAmount.toIntOrNull() ?: throw IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.text)
-            require(validatedPurchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INVALID_PURCHASE_AMOUNT }
+            require(validatedPurchaseAmount % LottoConstant.PRICE == 0) { ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT }
+            require(validatedPurchaseAmount >= LottoConstant.PRICE) { ErrorMessage.INSUFFICIENT_MINIMUM_AMOUNT }
             return validatedPurchaseAmount
         } catch (e: IllegalArgumentException) {
             OutputView.displayError(e.message ?: ErrorMessage.UNEXPECTED_ERROR.text)
